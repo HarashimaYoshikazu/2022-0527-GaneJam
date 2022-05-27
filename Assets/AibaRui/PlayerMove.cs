@@ -26,6 +26,7 @@ public class PlayerMove : MonoBehaviour
 
          Move();
         Jump();
+        Attack();
 
         //if(Input.GetButtonDown("Jump"))
         //{
@@ -86,6 +87,14 @@ public class PlayerMove : MonoBehaviour
 
     }
 
+    void Attack()
+    {
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _anim.SetTrigger("Attack");
+        }
+    }
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
