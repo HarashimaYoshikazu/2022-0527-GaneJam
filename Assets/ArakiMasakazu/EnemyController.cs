@@ -8,21 +8,28 @@ public class EnemyController : MonoBehaviour
     Rigidbody2D _rb = default;
     Vector2 _input = Vector2.zero;
     [SerializeField] Collider2D wallChaek;
+    GameObject player = default;
 
     // Start is called before the first frame update
     void Start()
     {
         _rb = this.GetComponent<Rigidbody2D>();
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 
     // Update is called once per frame
     void Update()
     {
-        //_input.x = _speed;
-        //Debug.Log(_input);
-        //_rb.velocity= _input.normalized;
+        Vector3 enemypos = this.transform.position;
+        Vector3 playerpos = player.transform.position;
+        float dis = Vector3.Distance(enemypos, playerpos);
 
-        _input = new Vector2(_speed, _rb.velocity.y);
-        _rb.velocity = _input;
+        if (dis < 10)
+        {
+            _input = new Vector2(_speed, _rb.velocity.y);
+            _rb.velocity = _input;
+        }
+        
     }
+
 }
