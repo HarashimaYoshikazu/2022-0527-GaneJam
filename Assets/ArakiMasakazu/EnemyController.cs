@@ -9,14 +9,28 @@ public class EnemyController : MonoBehaviour
     Vector2 _input = Vector2.zero;
     GameObject player = default;
 
+    [SerializeField] int _damage = 1;
+
+    [SerializeField] bool isBlack = false;
+
     // Start is called before the first frame update
     void Start()
     {
         _rb = this.GetComponent<Rigidbody2D>();
         player = GameObject.FindGameObjectWithTag("Player");
+
+        SpriteRenderer sp = GetComponent<SpriteRenderer>();
+        if(isBlack)
+        {
+            sp.color = Color.black;
+        }
+        else
+        {
+            sp.color = Color.white;
+        }
+        
     }
 
-    // Update is called once per frame
     void Update()
     {
         if(player)
@@ -33,6 +47,25 @@ public class EnemyController : MonoBehaviour
         }
 
         
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerPalam pp = collision.GetComponent<PlayerPalam>();
+            //エネミーの属性とプレイヤーの属性が一緒だったら
+            if(isBlack == pp.IsBlack)
+            {
+                pp?.Damage(_damage);
+            }
+            else 
+            {
+                pp?.Damage(_damage *2);
+            }
+            
+
+        }
     }
 
 }
