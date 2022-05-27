@@ -50,7 +50,7 @@ public class PlayerPalam : MonoBehaviour
         
         Debug.Log($"ダメージを受けた！現在のHP：{_hp}");
     }
-    public void AddAtk(int atk)
+    public void ChangeAtk(int atk)
     {
         _atk += atk;
         Debug.Log($"攻撃力上がった：{ _atk}");

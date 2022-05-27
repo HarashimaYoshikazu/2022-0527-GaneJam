@@ -8,7 +8,14 @@ public class PowerUpItem : ItemBase
     int _addPower = 1;
     public override void Execute(GameObject go)
     {
-        go.GetComponent<PlayerPalam>().AddAtk(_addPower);
-        Destroy(this.gameObject);
+        //çUåÇóÕÇUP
+        go.GetComponent<PlayerPalam>().ChangeAtk(_addPower);
+        this.GetComponent<Collider2D>().enabled = false;
+        this.GetComponent<SpriteRenderer>().enabled = false;
+    }
+
+    protected override void DelayExecute(GameObject go)
+    {
+        go.GetComponent<PlayerPalam>().ChangeAtk(-(_addPower));
     }
 }

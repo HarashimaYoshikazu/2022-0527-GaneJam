@@ -95,10 +95,10 @@ public class PlayerMove : MonoBehaviour
             _anim.SetTrigger("Attack");
         }
     }
-    public void AddSpeed(int spd)
+    public void ChangeSpeed(int spd)
     {
         _speed += spd;
-        Debug.Log($"スピード変わった：{spd}");
+        Debug.Log($"スピード変わった：{_speed}");
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
