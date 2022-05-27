@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] int _damage = 1;
 
     [SerializeField] bool isBlack = false;
+    public bool IsBlack => isBlack;
 
     // Start is called before the first frame update
     void Start()

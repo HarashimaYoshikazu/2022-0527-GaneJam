@@ -180,3 +180,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _initHP: 3
+  _speedUpPrefab: {fileID: 141584665734029264, guid: 2729fe92baf41714ca04b97ddfb5ed39, type: 3}
+  _powerUpPrefab: {fileID: 3019827478851954260, guid: 60b4c479305981c4f98552918f0041b8, type: 3}

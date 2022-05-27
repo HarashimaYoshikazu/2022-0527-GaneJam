@@ -5,6 +5,9 @@ using UnityEngine;
 public class EnemyPalam : MonoBehaviour
 {
     [SerializeField] int _initHP = 5;
+
+    [SerializeField] GameObject _speedUpPrefab = null;
+    [SerializeField] GameObject _powerUpPrefab = null;
     int _hp = 0;
     // Start is called before the first frame update
     void Start()
@@ -23,6 +26,16 @@ public class EnemyPalam : MonoBehaviour
         Debug.Log($"åªç›ÇÃHPÅF{ _hp}");
         if(_hp <= 0)
         {
+            var ec = GetComponent<EnemyController>();
+            if(ec.IsBlack)
+            {
+                Instantiate(_powerUpPrefab, this.transform.position, Quaternion.identity);
+            }
+            else
+            {
+                Instantiate(_speedUpPrefab, this.transform.position, Quaternion.identity);
+            }
+            
             Destroy(this.gameObject);
         }
     }
