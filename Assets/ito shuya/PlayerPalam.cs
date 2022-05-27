@@ -5,6 +5,9 @@ using UnityEngine;
 public class PlayerPalam : MonoBehaviour
 {
     [SerializeField] int _hp = 5;
+    [SerializeField] int _atk = 1;
+
+    bool isBlack = false;
     void Start()
     {
         
@@ -17,9 +20,18 @@ public class PlayerPalam : MonoBehaviour
         {
             Debug.Log("GameOver");
         }
+
+        if(Input.GetKeyDown(KeyCode.Q))
+        {
+            isBlack = !isBlack;
+        }
     }
-    public void Damage()
+    public void Damage(int dmg)
     {
-        _hp--;
+        _hp-= dmg;
+    }
+    public void AddAtk(int atk)
+    {
+        _atk += atk;
     }
 }
