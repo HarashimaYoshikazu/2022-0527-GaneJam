@@ -8,12 +8,15 @@ public class SpeedUpItem :ItemBase
     public override void Execute(GameObject go)
     {
         go.transform.GetComponent<PlayerMove>().ChangeSpeed(_addSpeed);
+
         this.GetComponent<Collider2D>().enabled = false;
         this.GetComponent<SpriteRenderer>().enabled = false;
+        PlayerPalam.Instance.PlayPerticl(true, true);
     }
     protected override void DelayExecute(GameObject go)
     {
         go.transform.GetComponent<PlayerMove>().ChangeSpeed(-(_addSpeed));
+        PlayerPalam.Instance.PlayPerticl(true, false);
     }
 }
 
