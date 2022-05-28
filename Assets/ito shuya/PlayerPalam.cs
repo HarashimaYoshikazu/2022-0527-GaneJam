@@ -6,7 +6,7 @@ public class PlayerPalam : MonoBehaviour
 {
     [SerializeField] int _initHP = 5;
     public int InitHP => _initHP;
-
+   
     int _hp = 0;
     public int HP => _hp;
 
@@ -21,10 +21,15 @@ public class PlayerPalam : MonoBehaviour
     public bool IsBlack => isBlack;
 
     SpriteRenderer _spriteRenderer = default;
+
+    Animator _anim;
+    [SerializeField] PlayerAttackColor _attackcolor;
+
     void Start()
     {
         _hp = _initHP;
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
         SetColor();
     }
 
@@ -39,6 +44,7 @@ public class PlayerPalam : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            Debug.Log("isBlack");
             isBlack = !isBlack;
             SetColor();
         }
@@ -81,5 +87,22 @@ public class PlayerPalam : MonoBehaviour
             isDeath = true;
         }
 
+    }
+
+    void Attack()
+    {
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _anim.SetTrigger("Attack");
+            if (_attackcolor)
+            {
+                _attackcolor.SetColor();
+            }
+            else
+            {
+                Debug.LogError("PlayerMoveクラスにPlayerAttackColorがアタッチされていません。");
+            }
+        }
     }
 }
