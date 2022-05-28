@@ -7,7 +7,7 @@ public class ChangeScean : MonoBehaviour
 {
     public void OnClickStartButton()
     {
-        SceneManager.LoadScene("TestCean");
+        SceneManager.LoadScene("Game");
     }
 
 }
