@@ -9,10 +9,15 @@ public class PlayerPalam : MonoBehaviour
 
     int _hp = 0;
     public int HP => _hp;
-    
+
     [SerializeField] int _atk = 1;
 
+    public int ATK => _atk;
+
     bool isBlack = false;
+    public bool IsDeath => isDeath;
+
+    bool isDeath = false;
     public bool IsBlack => isBlack;
 
     SpriteRenderer _spriteRenderer = default;
@@ -29,6 +34,7 @@ public class PlayerPalam : MonoBehaviour
         if (_hp <= 0)
         {
             Debug.Log("GameOver");
+            isDeath = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
@@ -39,7 +45,7 @@ public class PlayerPalam : MonoBehaviour
     }
     public void Damage(int dmg)
     {
-        if(_hp -dmg >=_initHP)
+        if (_hp - dmg >= _initHP)
         {
             _hp = _initHP;
         }
@@ -47,13 +53,13 @@ public class PlayerPalam : MonoBehaviour
         {
             _hp -= dmg;
         }
-        
+
         Debug.Log($"ダメージを受けた！現在のHP：{_hp}");
     }
     public void ChangeAtk(int atk)
     {
         _atk += atk;
-        Debug.Log($"攻撃力上がった：{ _atk}");
+        Debug.Log($"攻撃力上がった：{_atk}");
     }
     void SetColor()
     {
@@ -65,5 +71,15 @@ public class PlayerPalam : MonoBehaviour
         {
             _spriteRenderer.color = Color.white;
         }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Death")
+        {
+            _hp = 0;
+            isDeath = true;
+        }
+
     }
 }
