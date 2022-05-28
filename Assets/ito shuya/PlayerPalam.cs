@@ -6,20 +6,30 @@ public class PlayerPalam : MonoBehaviour
 {
     [SerializeField] int _initHP = 5;
     public int InitHP => _initHP;
-
+   
     int _hp = 0;
     public int HP => _hp;
-    
+
     [SerializeField] int _atk = 1;
 
+    public int ATK => _atk;
+
     bool isBlack = false;
+    public bool IsDeath => isDeath;
+
+    bool isDeath = false;
     public bool IsBlack => isBlack;
 
     SpriteRenderer _spriteRenderer = default;
+
+    Animator _anim;
+    [SerializeField] PlayerAttackColor _attackcolor;
+
     void Start()
     {
         _hp = _initHP;
         _spriteRenderer = GetComponent<SpriteRenderer>();
+        _anim = GetComponent<Animator>();
         SetColor();
     }
 
@@ -29,17 +39,19 @@ public class PlayerPalam : MonoBehaviour
         if (_hp <= 0)
         {
             Debug.Log("GameOver");
+            isDeath = true;
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
+            Debug.Log("isBlack");
             isBlack = !isBlack;
             SetColor();
         }
     }
     public void Damage(int dmg)
     {
-        if(_hp -dmg >=_initHP)
+        if (_hp - dmg >= _initHP)
         {
             _hp = _initHP;
         }
@@ -47,13 +59,13 @@ public class PlayerPalam : MonoBehaviour
         {
             _hp -= dmg;
         }
-        
+
         Debug.Log($"ダメージを受けた！現在のHP：{_hp}");
     }
     public void ChangeAtk(int atk)
     {
         _atk += atk;
-        Debug.Log($"攻撃力上がった：{ _atk}");
+        Debug.Log($"攻撃力上がった：{_atk}");
     }
     void SetColor()
     {
@@ -64,6 +76,33 @@ public class PlayerPalam : MonoBehaviour
         else
         {
             _spriteRenderer.color = Color.white;
+        }
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Death")
+        {
+            _hp = 0;
+            isDeath = true;
+        }
+
+    }
+
+    void Attack()
+    {
+
+        if (Input.GetButtonDown("Fire1"))
+        {
+            _anim.SetTrigger("Attack");
+            if (_attackcolor)
+            {
+                _attackcolor.SetColor();
+            }
+            else
+            {
+                Debug.LogError("PlayerMoveクラスにPlayerAttackColorがアタッチされていません。");
+            }
         }
     }
 }

@@ -10,15 +10,15 @@ public class PlayerMove : MonoBehaviour
     int _jumpcount=0;
     private bool _jump = false;
     Rigidbody2D _rb = default;
-    Animator _anim;
+    //Animator _anim;
 
-    [SerializeField] PlayerAttackColor _attackcolor;
+    //[SerializeField] PlayerAttackColor _attackcolor;
 
     private bool _ground = false;
     void Start()
     {
         _rb = GetComponent<Rigidbody2D>();
-        _anim = GetComponent<Animator>();
+        //_anim = GetComponent<Animator>();
 
     }
 
@@ -28,7 +28,7 @@ public class PlayerMove : MonoBehaviour
 
          Move();
         Jump();
-        Attack();
+        //Attack();
 
         //if(Input.GetButtonDown("Jump"))
         //{
@@ -68,11 +68,11 @@ public class PlayerMove : MonoBehaviour
         {
             if(_h<0)
             {
-                this.transform.localScale = new Vector3(-1, 1, 1);
+                this.transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                this.transform.localScale = new Vector3(1, 1, 1);
+                this.transform.localScale = new Vector3(-1, 1, 1);
             }
 
 
@@ -89,22 +89,22 @@ public class PlayerMove : MonoBehaviour
 
     }
 
-    void Attack()
-    {
+    //void Attack()
+    //{
 
-        if (Input.GetButtonDown("Fire1"))
-        {
-            _anim.SetTrigger("Attack");
-            if (_attackcolor)
-            {
-                _attackcolor.SetColor();
-            }
-            else
-            {
-                Debug.LogError("PlayerMoveクラスにPlayerAttackColorがアタッチされていません。");
-            }
-        }
-    }
+    //    if (Input.GetButtonDown("Fire1"))
+    //    {
+    //        _anim.SetTrigger("Attack");
+    //        if (_attackcolor)
+    //        {
+    //            _attackcolor.SetColor();
+    //        }
+    //        else
+    //        {
+    //            Debug.LogError("PlayerMoveクラスにPlayerAttackColorがアタッチされていません。");
+    //        }
+    //    }
+    //}
     public void ChangeSpeed(int spd)
     {
         _speed += spd;
