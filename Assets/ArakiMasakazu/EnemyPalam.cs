@@ -41,6 +41,8 @@ public class EnemyPalam : MonoBehaviour
         }
     }
 
+
+
     [SerializeField] AudioClip _audioClip;
     [SerializeField] AudioSource audioSource;
     private void OnTriggerEnter2D(Collider2D collision)
