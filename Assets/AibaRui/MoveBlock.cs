@@ -5,21 +5,16 @@ using UnityEngine;
 public class MoveBlock : MonoBehaviour
 {
     // Start is called before the first frame update
+    private AudioSource hornsound;
+
     void Start()
     {
-        
+        hornsound = GetComponent<AudioSource>();
     }
-
-    // Update is called once per frame
-    void Update()
+    //ボタンをクリックした時のスクリプトです。
+    public void OnClick()
     {
-        
+        hornsound.PlayOneShot(hornsound.clip);
     }
-
-    public void OnClickStartButton()
-        {
-            AudioSource audio = GetComponent<AudioSource>();
-            audio.Play();
-        }
 
 }
