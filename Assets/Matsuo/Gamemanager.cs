@@ -24,15 +24,11 @@ public class Gamemanager : MonoBehaviour
             gameover.SetActive(true);
             player.SetActive(false);
         }
-        
 
-        if (gameover.activeSelf)
-        {
-            if (Input.anyKey)
-            {
-                SceneManager.LoadScene($"Title");
+    }
 
-            }
-        }
+    public void Restart()
+    {
+        SceneManager.LoadScene($"Title");
     }
 }
