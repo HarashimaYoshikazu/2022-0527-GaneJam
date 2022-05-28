@@ -7,7 +7,10 @@ public class ChangeScean : MonoBehaviour
 {
     public void OnClickStartButton()
     {
+        AudioSource audio = GetComponent<AudioSource>();
+        audio.Play();
         SceneManager.LoadScene("TestCean");
+
     }
 
 }

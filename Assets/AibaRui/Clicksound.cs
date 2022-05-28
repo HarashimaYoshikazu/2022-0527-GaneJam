@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Clicksound : MonoBehaviour
 {
-    // Start is called before the first frame update
+    private AudioSource hornsound;
+
     void Start()
     {
-        
+        hornsound = GetComponent<AudioSource>();
+    }
+    //ボタンをクリックした時のスクリプトです。
+    public void OnClick()
+    {
+        hornsound.Play();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
