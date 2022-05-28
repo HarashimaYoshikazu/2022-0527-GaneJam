@@ -36,6 +36,7 @@ public class PlayerPalam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Attack();
         if (_hp <= 0)
         {
             Debug.Log("GameOver");
