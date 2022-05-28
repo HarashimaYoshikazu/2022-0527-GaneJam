@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Gamemanager : MonoBehaviour
+public class Gamemanager : Singleton<Gamemanager>
 {
     [SerializeField] PlayerPalam playerstate;
     [SerializeField] GameObject player;
     [SerializeField] GameObject gameover;
     bool isDeath = false;
+    public bool IsDeath => isDeath;
     // Start is called before the first frame update
     void Start()
     {

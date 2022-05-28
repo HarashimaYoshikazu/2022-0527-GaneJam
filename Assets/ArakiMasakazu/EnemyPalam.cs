@@ -20,6 +20,7 @@ public class EnemyPalam : MonoBehaviour
     {
         
     }
+    [SerializeField] Vector3 _offset = new Vector3(2,0);
     public void ChangeHP(int value)
     {
         _hp += value;
@@ -29,11 +30,11 @@ public class EnemyPalam : MonoBehaviour
             var ec = GetComponent<EnemyController>();
             if(ec.IsBlack)
             {
-                Instantiate(_powerUpPrefab, this.transform.position, Quaternion.identity);
+                Instantiate(_powerUpPrefab, this.transform.position + _offset, Quaternion.identity);
             }
             else
             {
-                Instantiate(_speedUpPrefab, this.transform.position, Quaternion.identity);
+                Instantiate(_speedUpPrefab, this.transform.position + _offset, Quaternion.identity);
             }
             
             Destroy(this.gameObject);
@@ -46,13 +47,15 @@ public class EnemyPalam : MonoBehaviour
         {
             var ec = GetComponent<EnemyController>();
             PlayerPalam pp = collision.gameObject.transform.parent.GetComponent<PlayerPalam>();
-            if (ec.IsBlack && pp.IsBlack)
+            if (ec.IsBlack == pp.IsBlack)
             {
+                Debug.Log("a");
                 ChangeHP(-1);
             }
             else
             {
-                ChangeHP(-1 *2);
+                Debug.Log("a");
+                ChangeHP(-2);
             }
             
         }

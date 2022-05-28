@@ -28,28 +28,34 @@ public class EnemyController : MonoBehaviour
         {
             sp.color = Color.white;
         }
+
+        
         
     }
 
     private void FixedUpdate()
     {
-        Vector3 enemypos = this.transform.position;
-        Vector3 playerpos = GameObject.FindGameObjectWithTag("Player").transform.position;
-        float dis = Vector3.Distance(enemypos, playerpos);
-
-        enemypos.y = Vector2.zero.y;
-        playerpos.y = Vector2.zero.y;
-        if (dis < 10)
+        if (!Gamemanager.Instance.IsDeath)
         {
-            _rb.velocity = (playerpos - enemypos).normalized * _speed;
+            Vector3 enemypos = this.transform.position;
+            Vector3 playerpos = GameObject.FindGameObjectWithTag("Player").transform.position;
+            float dis = Vector3.Distance(enemypos, playerpos);
+
+            enemypos.y = Vector2.zero.y;
+            playerpos.y = Vector2.zero.y;
+            if (dis < 10)
+            {
+                _rb.velocity = (playerpos - enemypos).normalized * _speed;
+            }
         }
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (collision.CompareTag("PlayerBody"))
         {
-            PlayerPalam pp = collision.GetComponent<PlayerPalam>();
+            PlayerPalam pp = collision.transform.parent.GetComponent<PlayerPalam>();
             //エネミーの属性とプレイヤーの属性が一緒だったら
             if(isBlack == pp.IsBlack)
             {

@@ -135,7 +135,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &8834847060315557638
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,9 +164,9 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.017193854, y: 0}
+  m_Offset: {x: -0.020310402, y: 0}
   serializedVersion: 2
-  m_Radius: 0.6289534
+  m_Radius: 0.7380332
 --- !u!114 &9220361192106495633
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -179,6 +179,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 487b02515ff4fc14dadefc3c1d6b320f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _initHP: 3
+  _initHP: 4
   _speedUpPrefab: {fileID: 141584665734029264, guid: 2729fe92baf41714ca04b97ddfb5ed39, type: 3}
   _powerUpPrefab: {fileID: 3019827478851954260, guid: 60b4c479305981c4f98552918f0041b8, type: 3}
+  _offset: {x: 1, y: 0, z: 0}
