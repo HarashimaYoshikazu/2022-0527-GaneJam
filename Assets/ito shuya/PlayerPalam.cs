@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerPalam : MonoBehaviour
+public class PlayerPalam : Singleton<PlayerPalam>
 {
     [SerializeField] int _initHP = 5;
     public int InitHP => _initHP;
@@ -24,6 +24,9 @@ public class PlayerPalam : MonoBehaviour
 
     Animator _anim;
     [SerializeField] PlayerAttackColor _attackcolor;
+
+    [SerializeField] ParticleSystem _SpeedParticleSystem;
+    [SerializeField] ParticleSystem _powerParticleSystem;
 
     void Start()
     {
@@ -48,6 +51,32 @@ public class PlayerPalam : MonoBehaviour
             Debug.Log("isBlack");
             isBlack = !isBlack;
             SetColor();
+        }
+    }
+
+    public void PlayPerticl(bool isSpeed, bool isplay)
+    {
+        if (isplay)
+        {
+            if (isSpeed)
+            {
+                _SpeedParticleSystem.Play();
+            }
+            else
+            {
+                _powerParticleSystem.Play();
+            }
+        }
+        else
+        {
+            if (isSpeed)
+            {
+                _SpeedParticleSystem.Stop();
+            }
+            else
+            {
+                _powerParticleSystem.Stop();
+            }
         }
     }
     public void Damage(int dmg)
@@ -89,12 +118,13 @@ public class PlayerPalam : MonoBehaviour
         }
 
     }
-
+    [SerializeField] AudioClip _audioClip;
+    [SerializeField] AudioSource audioSource;
     void Attack()
     {
-
         if (Input.GetButtonDown("Fire1"))
         {
+            audioSource.PlayOneShot(_audioClip);
             _anim.SetTrigger("Attack");
             if (_attackcolor)
             {
