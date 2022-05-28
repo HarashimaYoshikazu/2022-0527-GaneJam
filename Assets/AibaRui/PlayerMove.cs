@@ -12,6 +12,8 @@ public class PlayerMove : MonoBehaviour
     Rigidbody2D _rb = default;
     Animator _anim;
 
+    [SerializeField] PlayerAttackColor _attackcolor;
+
     private bool _ground = false;
     void Start()
     {
@@ -93,6 +95,14 @@ public class PlayerMove : MonoBehaviour
         if (Input.GetButtonDown("Fire1"))
         {
             _anim.SetTrigger("Attack");
+            if (_attackcolor)
+            {
+                _attackcolor.SetColor();
+            }
+            else
+            {
+                Debug.LogError("PlayerMoveクラスにPlayerAttackColorがアタッチされていません。");
+            }
         }
     }
     public void ChangeSpeed(int spd)
