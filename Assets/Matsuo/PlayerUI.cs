@@ -1,43 +1,46 @@
 
-//using System.Collections;
-//using System.Collections.Generic;
-//using UnityEngine;
-//using UnityEngine.UI;
-//using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
-//public class PlayerUI : MonoBehaviour
-//{
-//    [SerializeField] PlayerPalam player;
-//    [SerializeField] Slider lifeber = default;
-//    [SerializeField] TextMeshProUGUI life;
-//    int maxHp;
-//    int hp;
-//    void Start()
-//    {
-//        // スライダーを取得する
-//        lifeber = GameObject.Find("LifeBer").GetComponent<Slider>();
-//        expber = GameObject.Find("EXPbar").GetComponent<Slider>();
-//        levelui.GetComponent<Text>().text = "Level:" + playerLevel;
-//        maxHp = player.playerMaxLife;
-//        hp = player.playerLife;
+public class PlayerUI : MonoBehaviour
+{
+    [SerializeField] PlayerPalam player;
+    [SerializeField] Slider hpbar = default;
+    [SerializeField] TextMeshProUGUI speedText;
+    [SerializeField] TextMeshProUGUI atkText;
 
-//        スライダーの最大値の設定
-//        lifeber.maxValue = maxHp;
-//        スライダーの現在値の設定
-//        lifeber.value = hp;
-//    }
+    int maxHp;
+    int hp;
+    int atk;
+    int speed;
+    void Start()
+    {
+        // スライダーを取得する
+        maxHp = player.InitHP;
+        hp = player.HP;
+        //atk = player.ATK;
+
+        //スライダーの最大値の設定
+        hpbar.maxValue = maxHp;
+        //スライダーの現在値の設定
+        hpbar.value = hp;
+    }
 
 
-//    void Update()
-//    {
-//        maxHp = player.playerMaxLife;
-//        hp = player.playerLife;
+    void Update()
+    {
+        maxHp = player.InitHP;
+        hp = player.HP;
 
-//        スライダーの最大値の設定
-//        lifeber.maxValue = maxHp;
+        //スライダーの最大値の設定
+        hpbar.maxValue = maxHp;
 
-//        スライダーの現在値の設定
-//        lifeber.value = hp;
-//        life.text = "LIFE:" + hp + "/" + maxHp;
-//    }
-//}
+        //スライダーの現在値の設定
+        hpbar.value = hp;
+        //speedText.text = "SPEED:" + speed;
+        atkText.text = "ATK:" + atk;
+    }
+}
