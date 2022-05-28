@@ -68,11 +68,11 @@ public class PlayerMove : MonoBehaviour
         {
             if(_h<0)
             {
-                this.transform.localScale = new Vector3(-1, 1, 1);
+                this.transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                this.transform.localScale = new Vector3(1, 1, 1);
+                this.transform.localScale = new Vector3(-1, 1, 1);
             }
 
 
