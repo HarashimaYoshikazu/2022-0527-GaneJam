@@ -89,12 +89,13 @@ public class PlayerPalam : MonoBehaviour
         }
 
     }
-
+    [SerializeField] AudioClip _audioClip;
+    [SerializeField] AudioSource audioSource;
     void Attack()
     {
-
         if (Input.GetButtonDown("Fire1"))
         {
+            audioSource.PlayOneShot(_audioClip);
             _anim.SetTrigger("Attack");
             if (_attackcolor)
             {

@@ -41,10 +41,13 @@ public class EnemyPalam : MonoBehaviour
         }
     }
 
+    [SerializeField] AudioClip _audioClip;
+    [SerializeField] AudioSource audioSource;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.CompareTag("PlayerCircle"))
         {
+            audioSource.PlayOneShot(_audioClip);
             var ec = GetComponent<EnemyController>();
             PlayerPalam pp = collision.gameObject.transform.parent.GetComponent<PlayerPalam>();
             if (ec.IsBlack == pp.IsBlack)
