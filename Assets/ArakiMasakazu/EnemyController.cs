@@ -18,7 +18,6 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         _rb = this.GetComponent<Rigidbody2D>();
-        player = GameObject.FindGameObjectWithTag("Player");
 
         SpriteRenderer sp = GetComponent<SpriteRenderer>();
         if(isBlack)
@@ -34,20 +33,14 @@ public class EnemyController : MonoBehaviour
 
     void Update()
     {
-        if(player)
-        {
             Vector3 enemypos = this.transform.position;
-            Vector3 playerpos = player.transform.position;
+            Vector3 playerpos = GameObject.FindGameObjectWithTag("Player").transform.position;
             float dis = Vector3.Distance(enemypos, playerpos);
 
             if (dis < 10)
             {
-                _input = new Vector2(_speed, _rb.velocity.y);
-                _rb.velocity = _input;
-            }
-        }
-
-        
+                _rb.velocity = (playerpos - this.transform.position).normalized * _speed;
+            }       
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

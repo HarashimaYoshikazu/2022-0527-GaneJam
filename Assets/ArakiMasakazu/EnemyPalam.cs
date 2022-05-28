@@ -23,7 +23,7 @@ public class EnemyPalam : MonoBehaviour
     public void ChangeHP(int value)
     {
         _hp += value;
-        Debug.Log($"åªç›ÇÃHPÅF{ _hp}");
+        Debug.Log($"ìGåªç›ÇÃHPÅF{ _hp}");
         if(_hp <= 0)
         {
             var ec = GetComponent<EnemyController>();
@@ -44,7 +44,17 @@ public class EnemyPalam : MonoBehaviour
     {
         if(collision.CompareTag("PlayerCircle"))
         {
-            ChangeHP(-1);
+            var ec = GetComponent<EnemyController>();
+            PlayerPalam pp = collision.gameObject.transform.parent.GetComponent<PlayerPalam>();
+            if (ec.IsBlack && pp.IsBlack)
+            {
+                ChangeHP(-1);
+            }
+            else
+            {
+                ChangeHP(-1 *2);
+            }
+            
         }
     }
 }
