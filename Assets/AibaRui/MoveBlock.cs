@@ -15,4 +15,11 @@ public class MoveBlock : MonoBehaviour
     {
         
     }
+
+    public void OnClickStartButton()
+        {
+            AudioSource audio = GetComponent<AudioSource>();
+            audio.Play();
+        }
+
 }
