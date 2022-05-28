@@ -31,16 +31,18 @@ public class EnemyController : MonoBehaviour
         
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-            Vector3 enemypos = this.transform.position;
-            Vector3 playerpos = GameObject.FindGameObjectWithTag("Player").transform.position;
-            float dis = Vector3.Distance(enemypos, playerpos);
+        Vector3 enemypos = this.transform.position;
+        Vector3 playerpos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        float dis = Vector3.Distance(enemypos, playerpos);
 
-            if (dis < 10)
-            {
-                _rb.velocity = (playerpos - this.transform.position).normalized * _speed;
-            }       
+        enemypos.y = Vector2.zero.y;
+        playerpos.y = Vector2.zero.y;
+        if (dis < 10)
+        {
+            _rb.velocity = (playerpos - enemypos).normalized * _speed;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
