@@ -12,10 +12,12 @@ public class PowerUpItem : ItemBase
         go.GetComponent<PlayerPalam>().ChangeAtk(_addPower);
         this.GetComponent<Collider2D>().enabled = false;
         this.GetComponent<SpriteRenderer>().enabled = false;
+        PlayerPalam.Instance.PlayPerticl(false,true);
     }
 
     protected override void DelayExecute(GameObject go)
     {
         go.GetComponent<PlayerPalam>().ChangeAtk(-(_addPower));
+        PlayerPalam.Instance.PlayPerticl(false, false);
     }
 }

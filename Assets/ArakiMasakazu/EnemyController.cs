@@ -50,12 +50,15 @@ public class EnemyController : MonoBehaviour
         }
         
     }
-
+    [SerializeField] AudioClip _audioClip;
+    [SerializeField] AudioSource _audioSource;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("PlayerBody"))
         {
+            _audioSource.PlayOneShot(_audioClip);
             PlayerPalam pp = collision.transform.parent.GetComponent<PlayerPalam>();
+
             //エネミーの属性とプレイヤーの属性が一緒だったら
             if(isBlack == pp.IsBlack)
             {
